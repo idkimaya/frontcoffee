@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
-
+  // dropdown avatar profile name and logout
   return (
     <header
       className={`z-0 w-full bg-white text-base text-black ${
@@ -56,13 +56,14 @@ const Navbar: React.FC = () => {
           <Link href="/" passHref className="text-primary font-semibold">
             HOME
           </Link>
-          <Link href="/about" passHref className="text-primary font-semibold">
+          <Link href="/create" passHref className="text-primary font-semibold">
             CREATE YOUR OWN
           </Link>
-          <Link href="/" passHref className="text-primary font-semibold mr-12">
+          <Link href="/favorite" passHref className="text-primary font-semibold mr-12">
             FAVORITE
           </Link>
-          <button>
+          
+          <button> 
             <Image
               src="/images/avatar.svg"
               width={25}
@@ -81,10 +82,10 @@ const Navbar: React.FC = () => {
           <Link href="/" passHref className="text-primary font-semibold">
             HOME
           </Link>
-          <Link href="/about" passHref className="text-primary font-semibold">
+          <Link href="/create" passHref className="text-primary font-semibold">
             CREATE YOUR OWN
           </Link>
-          <Link href="/" passHref className="text-primary font-semibold">
+          <Link href="/favorite" passHref className="text-primary font-semibold">
             FAVORITE
           </Link>
         </nav>
