@@ -1,19 +1,14 @@
-import Head from "next/head";
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
-import { ArrowRightIcon } from "@radix-ui/react-icons"
+import Link from "next/link";
+import CoffeeCard from "@/components/CoffeeCard";
 
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Coffe4u - By Aya</title>
-        <meta name="description" content="Create and taste better." />
-      </Head>
-
       <main>
-        <section className="pt-28 items-center md:flex-row">
+        <section className="pt-8 items-center md:flex-row">
           <article className="xl:px-28">
             <div className="flex flex-col items-center justify-center lg:space-x-48 md:flex-row">
               <div>
@@ -34,7 +29,9 @@ export default function Home() {
                 </div>
                 <div className="space-x-8 px-4 py-8 lg:py-4">
                   <Button>Acheter</Button>
-                  <Button>Créez</Button>
+                  <Button asChild>
+                    <Link href="/create">Créez</Link>
+                  </Button>
                 </div>
               </div>
 
@@ -52,8 +49,33 @@ export default function Home() {
         </section>
 
         <section>
-          <div className="flex justify-center items-center min-h-screen">
+          <div className="flex justify-start items-start px-4 xl:px-28 py-8">
             <h1 className="font-bold text-2xl text-brown-dark">COFFEES</h1>
+          </div>
+          <div className="md:flex justify-center items-center lg:gap-16 px-4 mt-16 mb-12 space-y-24 md:space-y-0">
+            <CoffeeCard
+              title={"Cappuccino"}
+              price={"3.5"}
+              size={"Medium"}
+              image={"/images/coffee2.png"}
+            ></CoffeeCard>
+            <CoffeeCard
+              title={"Expresso"}
+              price={"4.5"}
+              size={"Large"}
+              image={"/images/coffee2.png"}
+            ></CoffeeCard>
+          </div>
+        </section>
+
+        <section>
+          <div className="flex justify-start items-start px-4 xl:px-28 py-8">
+            <h1 className="font-bold text-2xl text-brown-dark">CRÉATIONS</h1>
+          </div>
+          <div className="flex justify-center items-center py-5">
+            <Button asChild>
+              <Link href="/create">Créez</Link>
+            </Button>
           </div>
         </section>
       </main>

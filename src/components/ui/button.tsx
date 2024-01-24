@@ -10,14 +10,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-brown-clear text-white font-medium rounded-[20px] hover:bg-brown/90",
-        card: "bg-brown-clear text-white font-bold rounded-[20px] hover:bg-brown/90",
-        start: "bg-brown-clear text-white font-bold rounded-[20px] hover:bg-brown/90"
+        card: "bg-brown-clear text-white text-lg font-bold rounded-[20px] hover:bg-brown/90",
+        start: "bg-brown-clear text-white rounded-md hover:bg-brown/90",
+        // start: "bg-brown-clear text-white font-bold rounded-[20px] hover:bg-brown/90",
+        add: "hover:bg-accent hover:text-accent-foreground rounded-full",
+        ghost: "hover:bg-accent hover:text-accent-foreground", 
+        outline:"border border-grey bg-background hover:bg-accent hover:text-accent-foreground",
 
 
         // destructive:
         //   "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        // outline:
-        //   "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+       
         // secondary:
         //   "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         // ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -25,10 +28,12 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-8 w-[88px] px-6 py-2",
-        lg: "h-10 rounded-[20px] py-4 w-[260px] px-8 ",
+        acc: "h-8 w-[88px] px-16 py-2",
+        lg: "h-10 rounded-[20px] py-4 w-[350px] px-8 ",
         start:"h-[30px] w-[120px] rounded-[20px] px-6 py-4",
         sm: "h-9 rounded-md px-3",
         icon: "h-10 w-10",
+        add: "w-40 h-40",
       },
     },
     defaultVariants: {

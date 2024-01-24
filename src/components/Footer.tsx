@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <footer className="bg-footer py-4 px-4 flex justify-center items-center">
       <div className="w-11/12 flex flex-col justify-center items-stretch gap-4">
-        <div className="flex justify-between items-start gap-4">
-          <h1 className="font-bold">Coffee 4 u</h1>
+        <div className="lg:flex justify-between items-start gap-4 space-y-4">
+          <h1 className="font-bold text-xl">Coffee4u</h1>
           <div>
             <ul className="flex text-black gap-8">
               <li>
@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <p className="text-neutral-500">Coffee4u &copy; 2024 tous droits réservés </p>
+        <p className="text-neutral-500 py-2">Coffee4u &copy; 2024 tous droits réservés </p>
       </div>
     </footer>
   )
