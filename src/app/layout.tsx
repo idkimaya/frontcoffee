@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
+import { CartProvider } from '@/helpers/Context/CartContext'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -17,13 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <html className={inter.className}>
-        <body>
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
-      </html>
+      <CartProvider>
+        <html className={inter.className}>
+          <body>
+            <Navbar />
+            {children}
+            <Footer />
+          </body>
+        </html>
+      </CartProvider>
     </>
   );
 }

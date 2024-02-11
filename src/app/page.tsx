@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
-import CoffeeCard from "@/components/CoffeeCard";
+// import CoffeeCard from "@/components/CoffeeCard";
+import CoffeesList from "@/components/CoffeesList";
 
 
 export default function Home() {
@@ -53,18 +54,9 @@ export default function Home() {
             <h1 className="font-bold text-2xl text-brown-dark">COFFEES</h1>
           </div>
           <div className="md:flex justify-center items-center lg:gap-16 px-4 mt-16 mb-12 space-y-24 md:space-y-0">
-            <CoffeeCard
-              title={"Cappuccino"}
-              price={"3.5"}
-              size={"Medium"}
-              image={"/images/coffee2.png"}
-            ></CoffeeCard>
-            <CoffeeCard
-              title={"Expresso"}
-              price={"4.5"}
-              size={"Large"}
-              image={"/images/coffee2.png"}
-            ></CoffeeCard>
+           
+              <CoffeesList />
+            
           </div>
         </section>
 

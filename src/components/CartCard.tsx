@@ -11,10 +11,16 @@ import { CrossCircledIcon, PlusIcon } from '@radix-ui/react-icons';
 import { MinusIcon } from '@radix-ui/react-icons';
 
 import { Button } from './ui/button';
+
+interface CartCardProps {
+  coffee_title: string;
+  size: string;
+  price: string;
+}
   
 
 
-export default function CartCard() {
+export default function CartCard({coffee_title, size, price}: CartCardProps) {
   return (
     <div>
       <Card className="flex rounded-3xl w-[335px] h-[116px]">
@@ -23,12 +29,12 @@ export default function CartCard() {
         </div>
         <CardContent className="flex-col justify-center items-center py-4">
           <div>
-            <p className="font-semibold text-sm text-brown-create">Medium</p>
-            <p className="font-semibold text-lg text-brown-dark">Cappuccino</p>
+            <p className="font-semibold text-sm text-brown-create">{size}</p>
+            <p className="font-semibold text-lg text-brown-dark">{coffee_title}</p>
           </div>
           <div className="flex gap-16">
             <p className="font-semibold text-normal mt-2 text-brown-create">
-              3.9 $
+              {price} $
             </p>
             <div>
               <div className="flex justify-end items-center">
