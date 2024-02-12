@@ -12,6 +12,7 @@ interface Coffee {
   price: any;
   description: string;
   custom_coffee_title: string;
+  coffee: any;
 //   temperature: string;
 }
 

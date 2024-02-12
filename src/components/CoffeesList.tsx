@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import CoffeeCard from './CoffeeCard';
-import Link from 'next/link';
 import { ModalCoffee } from './ModalCoffee';
 
 interface Coffee {
@@ -12,7 +11,7 @@ interface Coffee {
     description: string;
 }
 
-const {COFFEE_BACK}  = process.env;
+
 
 export default function CoffeesList() {
     const [coffees, setCoffees] = useState<Coffee[]>([]);

@@ -18,13 +18,7 @@ import { useCartContext } from "../helpers/Context/CartContext";
 export function CartDrawer() {
   const { selectedCoffees } = useCartContext(); // Utilisez le hook useCart pour accéder aux données du panier
   
-  const calculateTotal = () => {
-    let total = 0;
-    selectedCoffees.forEach(coffee => {
-      total += coffee.price;
-    });
-    return total;
-  };
+  const { total } = useCartContext();
 
   return (
     <Sheet>
@@ -47,8 +41,7 @@ export function CartDrawer() {
                 key={coffee.id}
                 coffee_title={coffee.coffee_title}
                 size={coffee.size}
-                price={coffee.price}
-              />
+                price={coffee.price} coffeeId={undefined}              />
             ))}
           </div>
         </ScrollArea>
@@ -57,7 +50,7 @@ export function CartDrawer() {
             <SheetDescription className="font-semibold text-2xl flex justify-between text-brown-dark">
               Subtotal :
               <div>
-              <p>{calculateTotal()}$</p>
+              <p>{total}$</p>
               </div>
             </SheetDescription>
           </div>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 // import CoffeeCard from "@/components/CoffeeCard";
 import CoffeesList from "@/components/CoffeesList";
+import CreatedCoffeeList from "@/components/CreatedCoffeeList";
 
 
 export default function Home() {
@@ -63,6 +64,11 @@ export default function Home() {
         <section>
           <div className="flex justify-start items-start px-4 xl:px-28 py-8">
             <h1 className="font-bold text-2xl text-brown-dark">CRÉATIONS</h1>
+          </div>
+          <div className="md:flex justify-center items-center lg:gap-16 px-4 mt-16 mb-12 space-y-24 md:space-y-0">
+           
+              <CreatedCoffeeList />
+            
           </div>
           <div className="flex justify-center items-center py-5">
             <Button asChild>

@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useContext, useState, useEffect} from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 // Interface pour définir le type des cafés
 interface Coffee {
@@ -8,12 +8,16 @@ interface Coffee {
   custom_coffee_title: string;
   size: string;
   price: any;
+  quantity: number; // Ajouter la quantité au type Coffee
 }
 
 // Interface pour définir le type du contexte
 interface CartContextType {
   selectedCoffees: Coffee[];
+  total: number;
   addCoffee: (coffee: Coffee) => void;
+  handleModifyQuantity: (id: number, newQuantity: number) => void; // Ajouter handleModifyQuantity
+  removeCoffee: any;
 }
 
 // Créez le contexte global
@@ -36,59 +40,42 @@ interface CartProviderProps {
 // Composant CartProvider
 export function CartProvider({ children }: CartProviderProps) {
   const [selectedCoffees, setSelectedCoffees] = useState<Coffee[]>([]);
-
-  // Fonction pour récupérer la liste des cafés dans le panier
-  const fetchCoffees = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/orders');
-      const data = await response.json();
-      setSelectedCoffees(data);
-    } catch (error) {
-      console.error('Error fetching coffees:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCoffees();
-  }, []); // Appelé une seule fois au chargement initial
+  const [total, setTotal] = useState<number>(0); // Initialiser le total à 0
 
   // Fonction pour ajouter un café au panier
-  const addCoffee = async (coffee: Coffee) => {
-    try {
-      await fetch('http://localhost:5000/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(coffee),
-      });
-      // Après l'ajout d'un café, mettez à jour la liste des cafés
-      fetchCoffees();
-    } catch (error) {
-      console.error('Error adding coffee to cart:', error);
+  const addCoffee = (coffee: Coffee) => {
+    setSelectedCoffees([...selectedCoffees, coffee]);
+    setTotal(total + coffee.price); // Mettre à jour le total lors de l'ajout d'un café
+  };
+
+  // Fonction pour supprimer un café du panier
+  const removeCoffee = (coffeeId: number) => {
+    const updatedCoffees = selectedCoffees.filter(coffee => coffee.id !== coffeeId);
+    setSelectedCoffees(updatedCoffees);
+    const removedCoffee = selectedCoffees.find(coffee => coffee.id === coffeeId);
+    if (removedCoffee) {
+      setTotal(total - removedCoffee.price);
     }
   };
 
-  // Fonction pour supprimer un café de la commande
-  const deleteCoffee = async (coffeeId: number) => {
-    try {
-      await fetch(`http://localhost:5000/orders/${coffeeId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // Après la suppression d'un café, mettez à jour la liste des cafés
-      fetchCoffees();
-    } catch (error) {
-      console.error('Error deleting coffee from cart:', error);
-    }
+  // Fonction pour modifier la quantité d'un café dans le panier
+  const handleModifyQuantity = (id: number, newQuantity: number) => {
+    setSelectedCoffees(prevCoffees => prevCoffees.map(coffee => {
+      if (coffee.id === id) {
+        const totalPrice = coffee.price * newQuantity;
+        setTotal(total + (totalPrice - coffee.price * coffee.quantity)); // Mettre à jour le total en tenant compte de la nouvelle quantité
+        return { ...coffee, quantity: newQuantity, totalPrice };
+      }
+      return coffee;
+    }));
   };
 
   const contextValue = {
     selectedCoffees,
+    total,
     addCoffee,
-    deleteCoffee,
+    handleModifyQuantity,
+    removeCoffee
   };
 
   return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>;

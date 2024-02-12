@@ -1,46 +1,48 @@
-import * as React from "react"
+import React, { useState, useEffect } from 'react';
+import { Label } from "./ui/label";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Label } from "./ui/label"
+interface Flavor {
+  id: number;
+  flavor_name: string;
+}
 
-export function FlavorSelect() {
+interface FlavorSelectProps {
+  onSelectFlavor: (flavorID: number) => void; // Fonction pour envoyer l'ID de saveur sélectionné à un composant parent
+}
+
+export function FlavorSelect({ onSelectFlavor }: FlavorSelectProps) {
+  const [flavors, setFlavors] = useState<Flavor[]>([]); // État local pour stocker les saveurs récupérées depuis l'API
+  const [selectedFlavor, setSelectedFlavor] = useState<string>(''); // État local pour stocker la saveur sélectionnée
+
+  useEffect(() => {
+    // Effectue une requête GET pour récupérer les saveurs depuis l'API
+    fetch('http://localhost:5000/flavors')
+      .then(response => response.json())
+      .then(data => setFlavors(data))
+      .catch(error => console.error('Error fetching flavors:', error));
+  }, []); // Effectue la requête uniquement une fois après le premier rendu
+
+  const handleSelectFlavor = (flavorID: number) => {
+    setSelectedFlavor(flavorID.toString()); // Mettre à jour la saveur sélectionnée dans l'état local
+    onSelectFlavor(flavorID); // Envoyer l'ID de la saveur sélectionnée au composant parent
+  };
+
   return (
     <Select>
-        <Label>Choisi ton gôut</Label>
+      <Label>Choisi ton goût</Label>
       <SelectTrigger className="w-[280px]">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="Vanille">Vanille</SelectItem>
-          <SelectItem value="Brown Sugar">Brown Sugar</SelectItem>
-          <SelectItem value="Noisette Toffee">Noisette Toffee</SelectItem>
-          <SelectItem value="Noisette">Noisette</SelectItem>
-          <SelectItem value="Chocolat">Chocolat</SelectItem>
-          <SelectItem value="White Chocolate">White Chocolate</SelectItem>
-          <SelectItem value="Mocha">Mocha</SelectItem>
-          <SelectItem value="Mocha">Matcha</SelectItem>
-          <SelectItem value="Caramel">Caramel</SelectItem>
-          <SelectItem value="Caramel sugar free">Caramel sugar free</SelectItem>
-          <SelectItem value="Caramel beurre salé">Caramel beurre salé</SelectItem>
-          <SelectItem value="Miel">Miel</SelectItem>
-          <SelectItem value="Coco">Coco</SelectItem>
-          <SelectItem value="Pumkin spice">Pumkin spice</SelectItem>
-          <SelectItem value="Pain d'épice">Pain d'épice</SelectItem>
-          <SelectItem value="Cinnamon Dolce">Cinnamon Dolce</SelectItem>
-          <SelectItem value="Citron">Citron</SelectItem>
-          <SelectItem value="Cerise">Cerise</SelectItem>
+          {flavors.map(flavor => (
+            <SelectItem key={flavor.id} value={flavor.flavor_name} onSelect={() => handleSelectFlavor(flavor.id)}>
+              {flavor.flavor_name}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
+  );
 }
-
-
