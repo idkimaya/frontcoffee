@@ -55,16 +55,10 @@ export function ModalCoffee({ coffee, onClose }: ModalCoffeeProps) {
                 </h1>
                 <p className="text-sm">{coffee.description}</p>
               </div>
-              
-              <div className="py-6">
-                <h1 className="font-bold text-brown-create text-lg">
-                  Temperature :
-                </h1>
-                {/* <p className="text-sm">{coffee.temperature}</p> */}
-              </div>
+            
             </div>
 
-            <div className="flex justify-center items-center flex-col space-y-4">
+            <div className="flex justify-center items-center flex-col space-y-4 mt-8">
               <Button variant="card" size="lg" onClick={() => addCoffee(coffee)}>
                 Add to cart
               </Button>

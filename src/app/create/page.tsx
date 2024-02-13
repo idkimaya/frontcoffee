@@ -2,12 +2,14 @@
 import CreateCoffees from '@/components/CreateCoffees'
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { useCartContext } from '@/helpers/Context/CartContext';
 import Link from 'next/link';
 
 
 
-export default function CreateYourOwn() {
+export default function CreateYourOwn({coffee}: any) {
 
+  const { addCoffee } = useCartContext();
 
   // const handleToggleFavorite = async () => {
   //   try {
@@ -39,9 +41,9 @@ export default function CreateYourOwn() {
             <CreateCoffees />
           </ScrollArea>
           <div className="flex flex-col space-y-4 mt-8">
-            <Button variant="card" size="lg">
-             <Link href="/details">Add to cart</Link>
-            </Button>
+          <Button variant="card" size="lg" onClick={() => addCoffee(coffee)}>
+                Add to cart
+              </Button>
             <Button variant="card" size="lg">
                Add to favorite
             </Button>

@@ -12,6 +12,7 @@ import { useCartContext } from '@/helpers/Context/CartContext';
 
 interface CartCardProps {
   coffee_title: string;
+  custom_coffee_title: string;
   size: string;
   price: string;
   coffeeId: any;
@@ -19,7 +20,7 @@ interface CartCardProps {
   
 
 
-export default function CartCard({coffee_title, size, price, coffeeId}: CartCardProps) {
+export default function CartCard({coffee_title, size, price, coffeeId, custom_coffee_title}: CartCardProps) {
   const [quantity, setQuantity] = useState<number>(1); // État local pour suivre la quantité de café
   const { removeCoffee } = useCartContext();
 
@@ -43,7 +44,7 @@ export default function CartCard({coffee_title, size, price, coffeeId}: CartCard
           <div>
             <p className="font-semibold text-sm text-brown-create">{size}</p>
             <p className="font-semibold text-lg text-brown-dark">
-              {coffee_title}
+              {coffee_title} {custom_coffee_title}
             </p>
           </div>
           <div className="flex gap-16">

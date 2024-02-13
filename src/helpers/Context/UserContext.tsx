@@ -51,6 +51,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 // Interface pour le contexte utilisateur
 interface User {
+    id: any;
     username: string;
     password?: string;
     email: string;

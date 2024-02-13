@@ -38,10 +38,13 @@ export function CartDrawer() {
           <div className="space-y-8">
             {selectedCoffees.map(coffee => (
               <CartCard
-                key={coffee.id}
-                coffee_title={coffee.coffee_title}
-                size={coffee.size}
-                price={coffee.price} coffeeId={undefined}              />
+              key={coffee.id}
+              coffee_title={coffee.coffee_title}
+              size={coffee.size}
+              price={coffee.price} 
+              coffeeId={coffee.id} 
+              custom_coffee_title={coffee.custom_coffee_title} 
+              />
             ))}
           </div>
         </ScrollArea>

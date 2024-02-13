@@ -11,6 +11,10 @@ interface Coffee {
   price: any;
   description: string;
   custom_coffee_title: string;
+  milkTypeID: string,
+    flavorID: string,
+    toppingID: string,
+    userID: number,
 }
 
 interface CreateModalProps {
@@ -41,7 +45,7 @@ export function CreateModal({ coffee, onClose }: CreateModalProps) {
                         <div className="flex-col">
                             <div className="space-y-4 mb-4">
                                 <h1 className="font-bold text-brown-create text-3xl">
-                                    {coffee.coffee_title}
+                                    {coffee.custom_coffee_title}
                                 </h1>
                                 <p className="font-semibold text-lg">{coffee.price} $</p>
                             </div>
@@ -54,9 +58,17 @@ export function CreateModal({ coffee, onClose }: CreateModalProps) {
                             </div>
                             <div className="py-6">
                                 <h1 className="font-bold text-brown-create text-lg">
-                                    Custom Title :
+                                 Milk  :
                                 </h1>
-                                <p className="text-sm">{coffee.custom_coffee_title}</p>
+                                <p className="text-sm">{coffee.milkTypeID}</p>
+                                <h1 className="font-bold text-brown-create text-lg">
+                                 Flavor  :
+                                </h1>
+                                <p className="text-sm">{coffee.flavorID}</p>
+                                <h1 className="font-bold text-brown-create text-lg">
+                                 Topping  :
+                                </h1>
+                                <p className="text-sm">{coffee.toppingID}</p>
                             </div>
                         </div>
                         <div className="flex justify-center items-center flex-col space-y-4">
