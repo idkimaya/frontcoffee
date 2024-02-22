@@ -117,25 +117,24 @@ export default function CreateCoffees() {
                 value={coffeeData.size}
                 placeholder="Small"
                 id="size"
-                onChange={() => setCoffeeData({ ...coffeeData, size: "" })}
+                onChange={(e) => setCoffeeData({ ...coffeeData, size:  e.target.value})}
               />
             </div>
             <div className="flex items-center space-x-2">
               <Input
                 type="text"
-                value={coffeeData.size}
+                
                 id="size"
                 placeholder="Medium"
-                onChange={() => setCoffeeData({ ...coffeeData, size: "" })}
+                onChange={(e) => setCoffeeData({ ...coffeeData, size:  e.target.value })}
               />
             </div>
             <div className="flex items-center space-x-2">
               <Input
                 type="text"
-                value={coffeeData.size}
                 placeholder="Large"
                 id="size"
-                onChange={() => setCoffeeData({ ...coffeeData, size: "" })}
+                onChange={(e) => setCoffeeData({ ...coffeeData, size:  e.target.value })}
               />
             </div>
           </div>

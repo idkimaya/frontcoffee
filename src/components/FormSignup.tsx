@@ -12,8 +12,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useToast } from './ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 export function FormSignup() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -39,7 +41,7 @@ export function FormSignup() {
         body: JSON.stringify(formData),
       });
       if (response.ok) {
-        handleRedirect("/login");
+        router.replace('/login');
         toast({
           variant: "success",
           title: "Connexion reussie !",
@@ -57,11 +59,7 @@ export function FormSignup() {
     }
   };
 
-  const handleRedirect = (url: string) => {
-    if (typeof window !== 'undefined') {
-      window.location.href = url;
-    }
-  };
+  
 
   return (
     <section>
