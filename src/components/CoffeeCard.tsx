@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
+// import Link from 'next/link';
 
 interface CoffeeCardProps {
   title: string;
@@ -18,6 +19,7 @@ const CoffeeCard: React.FC<CoffeeCardProps> = ({
   image,
   children,
 }) => {
+  
   return (
     <div className="w-[220px] h-[235px] rounded-[40px] shadow bg-brown">
       <div className="flex flex-col justify-center items-center">

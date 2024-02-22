@@ -57,18 +57,12 @@ export default function Created() {
 
             <div className="mt-8">
               <RadioGroup defaultValue="comfortable" className="flex py-2">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Small" id="r1" />
-                  <Label htmlFor="r1">Small</Label>
-                </div>
+
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="Medium" id="r2" />
                   <Label htmlFor="r2">Medium</Label>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="Large" id="r2" />
-                  <Label htmlFor="r2">Large</Label>
-                </div>
+
               </RadioGroup>
             </div>
             <div className="py-6">
